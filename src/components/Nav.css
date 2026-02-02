@@ -1,0 +1,55 @@
+
+nav{
+    background-color: rgb(196, 209, 247);
+    border-radius: 10px;
+}
+
+.header{
+    top: 15px;
+    position: sticky;
+    padding: 0px 7px;
+}
+
+ul{
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    
+    
+}
+
+ul li {
+    list-style: none;
+    background-color: rgb(55, 181, 137);
+    padding: 5px;
+}
+
+.link:hover{
+    text-decoration: none;
+    /* color: rgb(212, 15, 81); */
+    animation: click 1s ease-in-out 0s 1;
+    
+}
+
+.anchor{
+    
+    text-decoration: none;
+}
+
+.main{
+    margin-top: 30px;
+}
+
+@keyframes click {
+    0%{
+        background-color: navy;
+    }
+
+    100%{
+        
+        background-color: rgb(15, 15, 15);
+    }
+    
+}
