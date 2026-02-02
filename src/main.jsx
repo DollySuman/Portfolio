@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Home from './components/Home.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import About from './components/About.jsx'
+import Contact from './components/Contact.jsx'
 import { Navigate } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -22,8 +23,8 @@ const router = createBrowserRouter([
       element: <About/>
     },
     {
-      path: '/git',
-      element: <Navigate to ='https://github.com/DollySuman' replace/>
+      path: '/contact',
+      element: <Contact/>
     }
   ])
 createRoot(document.getElementById('root')).render(
