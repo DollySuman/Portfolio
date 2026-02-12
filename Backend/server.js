@@ -16,9 +16,32 @@ app.post('/mail', (req,res)=>{
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: "",
-      pass: ""
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+      
+      
     } 
+  })
+  
+  const mailOptions = {
+    from: email,
+    to:process.env.EMAIL_USER,
+    subject: `Portfolio Checked out by ${name}`,
+    text: Message
+
+  }
+
+  transporter.sendMail(mailOptions,(error,info)=>{
+    if(error){
+      console.error("ERROR OCCURED DEBUG IT", error);
+      res.status(500).send('Error in sending email. Please try again later.')
+
+    }
+
+    else{
+      console.log("Email sent successfully:", info.response);
+      res.send('Email sent')
+    }
   })
 })
 
@@ -29,3 +52,36 @@ app.get('/mail', (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`)
 })
+
+
+// Steps internally:
+
+// Connect to Gmail SMTP
+
+// Authenticate
+
+// Transmit message
+
+// Receive response
+
+// Callback receives:
+
+// error → failure
+
+// info → success metadata
+
+
+/*Browser form submit
+        ↓
+POST /send-email
+        ↓
+body-parser middleware
+        ↓
+req.body extracted
+        ↓
+nodemailer SMTP connection
+        ↓
+email transmitted
+        ↓
+HTTP response returned
+*/

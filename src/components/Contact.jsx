@@ -40,7 +40,7 @@ const Contact = () => {
         <div className="cont">Contact Me</div>
         <div className="note">Have a question or want to work together? Leave your details and I'll get back to you as soon as possible.</div>
         <div className="getemail">
-          <form className='flex' action="" onSubmit={handleSubmit(onSubmit)}  >
+          <form method='POST' className='flex' action="" onSubmit={handleSubmit(onSubmit)}  >
 
             <div className="putname">
               <input type="text" placeholder='Name' {...register('name', { required: { value: true, message: "This field is required" } })} />
