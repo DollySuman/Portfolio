@@ -1,16 +1,18 @@
 import 'dotenv/config'
 import express from 'express'
+import cors from 'cors';
 import bodyParser from 'body-parser'
 import nodemailer from "nodemailer";
 
 const app = express()
 const port = 3000
+app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
-app.post('/mail', (req,res)=>{
+app.post('/contact', (req,res)=>{
   const {name , email, Message} = req.body;
 
   const transporter = nodemailer.createTransport({
@@ -24,10 +26,11 @@ app.post('/mail', (req,res)=>{
   })
   
   const mailOptions = {
-    from: email,
+    from: process.env.EMAIL_USER,
     to:process.env.EMAIL_USER,
-    subject: `Portfolio Checked out by ${name}`,
-    text: Message
+    subject: `Portfolio Checked by ${name}`,
+    text: `${Message} || Email :- ${email}`,
+    replyTo: email
 
   }
 
