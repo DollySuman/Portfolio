@@ -30,6 +30,26 @@ input{
     width: 400px;
 }
 
+.alert{
+    background-color: blue;
+    position: absolute;
+    width: 90px;
+    height: 40px;
+    bottom: 80px;
+    left: 48%;
+    color: rgb(0, 255, 119);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border-radius: 20px;
 
+}
+
+.error{
+    color: red;
+    width: max-content;
+    margin: auto;
+}
 
 

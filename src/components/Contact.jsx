@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useForm } from 'react-hook-form'
 import Navbar from './Navbar'
 import './Contact.css'
@@ -23,17 +23,20 @@ const Contact = () => {
   //   console.log(data,res);
   // }
 
+  const [alert, setalert] = useState(null)
   const onSubmit = async(data) => {
-    let r = await fetch("http://localhost:5000/contact",{method: "POST", header:{
+    let r = await fetch("http://localhost:3000/contact",{method: "POST", headers:{
       "Content-Type": "application/json",
     }, body: JSON.stringify(data)
   })
 
   let res = await r.text();
-  console.log(data,res);
+  setalert(res)
   }
+
   return (
     <div>
+      {alert && <div className='alert'> {alert}</div>}
       <Navbar/>
       <div className="connect">
 
@@ -44,15 +47,17 @@ const Contact = () => {
 
             <div className="putname">
               <input type="text" placeholder='Name' {...register('name', { required: { value: true, message: "This field is required" } })} />
-              {errors.name && <span className="error">{errors.name.message}</span>}
+              {errors.name && <div className="error">{errors.name.message}</div>}
             </div>
 
             <div className="putemail">
               <input type="text" placeholder='Email' {...register('email', { required: { value: true, message: "This field is required" } })} />
+              {errors.email && <div className='error'>{errors.email.message} </div>}
             </div>
 
             <div className="putmsg">
               <input type="text" placeholder='Message' {...register('Message', { required: { value: true, message: "This field is required" } })} />
+              {errors.Message && <div className='error'>{errors.Message.message} </div>}
             </div>
             <input type="submit" value="Submit" />
           </form>
