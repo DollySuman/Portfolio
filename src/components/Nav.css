@@ -33,10 +33,9 @@ ul a{
    text-decoration: none;
 }
 
-.link:hover{
-    text-decoration: underline;
-    /* color: rgb(212, 15, 81); */
-    animation: click 1s ease-in-out 0s infinite;
+ul a :hover,
+.git:hover{
+    color: rgb(113, 0, 77);
     
 }
 
