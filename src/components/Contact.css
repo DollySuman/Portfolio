@@ -30,26 +30,59 @@ input{
     width: 400px;
 }
 
+
 .alert{
-    background-color: blue;
+    background-color: rgb(141, 141, 251);
     position: absolute;
     width: 90px;
     height: 40px;
     bottom: 80px;
     left: 48%;
-    color: rgb(0, 255, 119);
+    color: rgb(6, 7, 7);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 4px;
     border-radius: 20px;
+    animation: popup 3s linear forwards;
+    
 
 }
+
+@keyframes popup {
+    from{
+        transform: translateY(0);
+    }
+
+    to{
+        transform: translateY(-150px);
+        
+    }
+    
+}
+
+
 
 .error{
     color: red;
     width: max-content;
     margin: auto;
+}
+
+.subbtn{
+    background-color: rgba(54, 184, 82, 0.772);
+    color: black;
+    font-size: medium;
+    width: 60%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 40px;
+}
+
+.subbtn:hover{
+    background-color: rgb(54, 184, 82,1);
+    cursor: pointer;
+
 }
 
 

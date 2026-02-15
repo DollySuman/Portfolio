@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
 import Navbar from './Navbar'
 import './Contact.css'
@@ -11,8 +11,15 @@ const Contact = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors, isSubmitting },
-  } = useForm();
+    reset,
+    formState: { errors, isSubmitting,isSubmitSuccessful },
+  } = useForm({
+    defaultValues:{
+      name:"",
+      email: "",
+      Message: ""
+    },
+  });
 
   // const onSubmit = async(data) =>{
   //   let r = await fetch("http://localhost:5000/contact", {method: "POST", headers:{
@@ -33,6 +40,27 @@ const Contact = () => {
   let res = await r.text();
   setalert(res)
   }
+
+  useEffect(()=>{
+    if (isSubmitSuccessful){
+      reset();
+    }
+  },[isSubmitSuccessful,reset])
+
+
+  useEffect(() => {
+    if(alert){
+
+      const timer = setTimeout(() => {
+        setalert(null)
+      }, 1000);
+
+      return ()=> clearTimeout(timer);
+      
+    }
+    
+  }, [alert])
+  
 
   return (
     <div>
@@ -59,7 +87,7 @@ const Contact = () => {
               <input type="text" placeholder='Message' {...register('Message', { required: { value: true, message: "This field is required" } })} />
               {errors.Message && <div className='error'>{errors.Message.message} </div>}
             </div>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" className='subbtn' />
           </form>
 
         </div>
